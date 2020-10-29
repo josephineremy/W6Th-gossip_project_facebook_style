@@ -11,5 +11,3 @@ $ rails s <br><br>
 
 ==> Installe-toi sur ton navigateur préféré et lance http://localhost:3000/ <br>
 ==> Laisse-toi guider, essaye de cliquer partout (en espérant qu'il n'y ait pas de message d'erreurs)<br><br>
-
-/!\ /!\ /!\ Attention /!\ /!\ /!\ <br>
