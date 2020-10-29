@@ -1,24 +1,15 @@
-# README
+## Présentation
+Bienvenue sur le site Gossip 4.0, la version "Facebook style" où tu peux te créer une session et poster des potins, des commentaires et des likes sous ton nom.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Instructions
+$ git clone <br>
+$ bundle install <br>
+$ rails db:create <br>
+$ rails db:migrate <br>
+$ rails db:seed <br>
+$ rails s <br><br>
 
-Things you may want to cover:
+==> Installe-toi sur ton navigateur préféré et lance http://localhost:3000/ <br>
+==> Laisse-toi guider, essaye de cliquer partout (en espérant qu'il n'y ait pas de message d'erreurs)<br><br>
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+/!\/!\/!\ Attention /!\/!\/!\<br>
