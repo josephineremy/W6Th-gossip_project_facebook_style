@@ -1,0 +1,70 @@
+<div class="jumbotron-container" style="background-image: url(https://images.pexels.com/photos/3770000/pexels-photo-3770000.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940); background-position: 0% 44%;">
+  <div class="container " style="height: 300px;">
+  </div>
+</div>
+
+<% if @user.errors.any? %>
+  <div class="alert alert-dismissible alert-danger">
+    <button type="button" class="close" data-dismiss="alert">&times;</button><br>
+    <p class="alert-link"><strong>Oops!</strong> Nous n'avons pas réussi à créer le potin car il faut obligatoirement que tu remplisses tous les champs. Réessaye donc !</p>
+  </div>
+<% end %>
+<body>
+  <div class = "p-5">
+    <h2 class="text-center">Inscription</h2><br>
+    <p class="text-center"><em class="text-muted">Allez, viens, on est bien bien bien bien bien !</em></p><br>
+    <div class="signup-form sign">
+    <form action="/user" method="post">
+		    <p>Remplis le formulaire ci-dessous pour l'inscription:</p>
+		    <hr>
+          <div class="form-group">
+			      <div class="input-group">
+				      <span class="input-group-addon"><i class="fa fa-user"></i></span>
+				      <input type="text" class="form-control" name="first_name" placeholder="Prénom">
+			      </div><br>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user"></i></span>
+              <input type="text" class="form-control" name="last_name" placeholder="Nom">
+            </div><br>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fas fa-align-left"></i></span>
+              <input type="text" class="form-control" name="description" placeholder="Description">
+            </div><br>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fas fa-birthday-cake"></i></span>
+              <input type="text" class="form-control" name="age" placeholder="Age">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="far fa-building"></i></span>
+              <%=select_tag "city_id", options_from_collection_for_select(City.all, "id", "name"), class:"form-control", required:"required"%>
+            </div>
+          </div>
+          <div class="form-group">
+			      <div class="input-group">
+				      <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
+				      <input type="email" class="form-control" name="email" placeholder="Adresse Mail">
+			      </div>
+          </div>
+		      <div class="form-group">
+			      <div class="input-group">
+				      <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+			        <input type="text" class="form-control" name="password" placeholder="Mot de passe">
+			      </div>
+          </div>
+		      <div class="form-group">
+			      <div class="input-group">
+            </div>
+            <div class="form-group">
+			        <label class="checkbox-inline"><input type="checkbox" required="required"> J'accepte les <a href="#">conditions générales d'utilisation</a> &amp; <a href="#">politiques de confidentialité</a></label>
+		        </div>
+		        <div class="form-group">
+              <button type="submit" class="btn btn-primary">Sign Up</button>
+            </div>
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      </form>
+	    <div class="text-center">Tu as déjà un compte? <a href="http://localhost:3000/sessions/new">Connecte-toi ici</a></div>
+    </div>
+  </div>
+<body>

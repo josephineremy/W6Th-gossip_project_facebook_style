@@ -1,0 +1,32 @@
+<div class="jumbotron-container" style="background-image: url(https://images.pexels.com/photos/906018/pexels-photo-906018.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940); background-position: 15% 56%;">
+  <div class="container " style="height: 300px;">
+    <div class="text-center py-5 px-4">
+        <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Balance ton potin !</strong></h2>
+        <p class="mx-7 mb-7">Tu as vu un truc que personne ne sait, vas-y, balance-le...</p>
+    </div>
+  </div>
+</div>
+
+<div>
+  <% if @gossip.errors.any? %>
+  <div class="alert alert-dismissible alert-danger">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <br><p class="alert-link"><strong>Oh mince!</strong> Nous n'avons pas réussi à créer le potin car il faut obligatoirement un titre et un contenu. Réessaye donc !</p>
+  </div>
+  <% end %>
+</div><br /><br />
+
+<div class= "text-center"><h2>Formulaire de création</h2></div><br /><br />
+  <div class="container">
+    <%= form_tag url_for(action: 'create'), method: 'post' do %>
+    <div class="form-group">
+      <%= label_tag 'Titre de ton gossip' %>
+      <%= text_field_tag 'title', @title, :class =>"form-control" %><br /> <br />
+    </div>
+    <div class="form-group">
+      <%= label_tag 'Ton gossip' %>
+      <%= text_area_tag 'content', @content, :class =>"form-control" %><br /> <br />
+    </div>
+      <%= submit_tag "Créer le Gossip", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div><br /> <br /><br /> <br /> <br /> <br />

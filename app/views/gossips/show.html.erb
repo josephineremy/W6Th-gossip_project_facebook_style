@@ -1,0 +1,52 @@
+  <div class= "text-center"><br><h1>le potin n°<%= @gossip.id %></h1><br></div>
+
+
+    <div class="card text-white bg-dark p-5">
+      <h2 class="card-header"><%= @gossip.title %></h2><br>
+      <h4 class="card-title text-muted"><%= @gossip.content %></h4>
+      <% if current_user%>
+        <div class="pt-2">
+          <a href="<%= edit_gossip_path(@gossip.id)%>" class="btn btn-secondary">Editer le potin</a>
+          <a href="<%= gossip_path(@gossip.id) %>" class="btn btn-danger" data-confirm="T'es sûr de toi, là?!" data-method="DELETE">Supprimer le potin</a>
+        </div><br>
+        <div class="d-flex">
+          <%= button_to 'like', gossip_likeys_path(@gossip), method: :post, class:"btn btn-outline-info btn-sm" %>
+          <p class="p-2"> <%= @gossip.likeys.count %> <i class="fas fa-heart"></i></p>
+        </div>
+      <% end%>
+    </div>
+    <div class="pl-5"><br>
+      <p class="mb-0 p-2"><i class="fas fa-clock"></i>   Ecrit le : <%= @gossip.created_at %></p>
+      <p class="mb-0 p-2"><i class="fas fa-user-check mr-2"></i>Par: <%= @gossip.user.first_name %> <%= @gossip.user.last_name %></p>
+      <p class="mb-0 p-2"><i class="fas fa-city"></i>   A: <%= @gossip.user.city.name %></p><br>
+      <%= link_to "Plus d'informations sur l'auteur", user_path(@gossip.user.id), class: "text-warning" %>
+    </div><br><br>
+    <% if current_user%>
+      <div class="pl-5"><a href="<%= new_gossip_comment_path(@gossip.id)%>" class="btn btn-success">Ajouter un commentaire</a></div>
+    <% end %>
+      <div class="p-5"><br>
+        <h4>Les commentaires de ce gossip:</h4><br>
+        <div class="d-flex">
+          <div class="row">
+            <% @gossip.comments.each do |comment| %>
+              <div class="col-md-7 col-sm-10 col-xs-12 m-4">
+                <div class="card card-body elegant-color white-text rounded-bottom">
+                  <div class="card-body">
+                    <h4 class="card-title"><%= comment.user.first_name %></h4>
+                    <small class="text-muted">Ecrit le: <%=comment.created_at%></small>
+                    <p class="card-text"><%= comment.content %></p>
+                    <% if current_user%>
+                      <div class="d-flex">
+                        <%= button_to 'like', gossip_comment_likes_path(@gossip.id, comment.id), method: :post, class:"btn btn-outline-info btn-sm" %>
+                        <p class="p-2"> <%= comment.likes.count %> <i class="fas fa-heart"></i></p>
+                      </div>
+                      <a href="<%=edit_gossip_comment_path(@gossip.id, comment.id)%>" class="btn btn-primary">Editer le commentaire</a>
+                      <a href="<%= gossip_comment_path(@gossip.id, comment.id) %>" class="btn btn-outline-danger" data-confirm="T'es sûr de toi, là?!" data-method="DELETE">Supprimer le commentaire</a>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <%end%>
+          </div>
+        </div>
+      </div><br><br><br>

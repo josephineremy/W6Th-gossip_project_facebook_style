@@ -1,0 +1,41 @@
+<div class="row-fluid">
+  <div class="jumbotron" style="background-image: url(https://images.pexels.com/photos/568025/pexels-photo-568025.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+    <div class="container" style="height: 400px;">
+      <h1 class="display-3 text-center" style="color:white">Bienvenue sur Gossip 4.0</h1>
+        <p class="lead text-center" style="color:white">Venez voir ce que racontent les nerds</p>
+      <div class="row justify-content-center">
+        <div class="pt-2">
+          <a class="btn btn-primary btn-lg" href="http://localhost:3000/concept" role="button">C'est quoi le concept?</a>
+          <a class="btn btn-primary btn-lg" href="http://localhost:3000/gossips/new" role="button" style="background:grey">Crée ton propre potin !</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex">
+  <div class="row justify-content-center">
+    <% if @gossips %>
+      <% @gossips.each do |gossip| %>
+        <div class="col-md-3 col-sm-10 col-xs-12 m-4">
+          <div class="card">
+            <div class="card-body elegant-color white-text rounded-bottom">
+              <h4 class="card-title"><%= truncate(gossip.title, length:15) %></h4>
+              <hr class="hr-light">
+              <p class="card-text"><%= truncate(gossip.content, length:60) %></p>
+              <div class="text-right text-danger"> <small><%=gossip.user.first_name%></small></div>
+              <p class="text-right"><small><%= gossip.comments.count%> commentaires</small><br></p>
+              <% if current_user%>
+              <%= button_to 'like', gossip_likeys_path(gossip), method: :post, class:"btn btn-outline-info btn-sm float-right ml-2" %>
+              <p class="p-2 text-right"> <%= gossip.likeys.count %> <i class="fas fa-heart"></i></p>
+              <% end %>
+              <%= link_to "VOIR LE POTIN", gossip_path(gossip.id), :style => 'color:#FFFFF;', :class => "css_class" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p>Il n'y a pas de potin</p>
+    <% end %>
+  </div>
+</div>

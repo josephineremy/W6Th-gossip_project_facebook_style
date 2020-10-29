@@ -1,0 +1,19 @@
+<div class="d-flex">
+  <div class="row justify-content-center">
+    <% if @comments %>
+      <% @comments.each do |comment| %>
+        <div class="col-md-3 col-sm-10 col-xs-12 card m-4">
+          <div class="card-body elegant-color white-text rounded-bottom">
+            <p class="card-text"><%= truncate(comment.content, length:30) %></p>
+            <div class="text-right text-danger"> <small>Ecrit par: <%=comment.user.first_name%></small></div><br>
+            <div class="text-muted">Sur le gossip n°<%=comment.gossip.id%> <%=comment.gossip.title%></div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+    <div class="container">
+      <p>Il n'y a pas de commentaire</p>
+    </div>
+    <% end %>
+  </div>
+</div>
